@@ -9,6 +9,8 @@ import com.example.appproduct.R
 import com.example.appproduct.data.network.ApiClient
 import com.example.appproduct.data.repository.ProductRepository
 import com.example.appproduct.databinding.ActivityRegisterProductBinding
+import com.example.appproduct.ui.list.ProductListActivity
+
 
 class RegisterProductActivity : AppCompatActivity() {
 
@@ -25,10 +27,12 @@ class RegisterProductActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.success.observe(this) {
-            if (it) {
+        viewModel.success.observe(this) { success ->
+            if (success) {
                 Toast.makeText(this, "Producto guardado", Toast.LENGTH_SHORT).show()
-                // startActivity(Intent(this, ProductListActivity::class.java))
+                val intent = Intent(this, ProductListActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 

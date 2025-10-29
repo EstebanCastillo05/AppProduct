@@ -33,7 +33,6 @@ class RegisterProductViewModel(private val repository: ProductRepository) : View
                 if (response.isSuccessful) {
                     success.postValue(true)
                 } else {
-                    // Captura el body de error y el código HTTP
                     val errorBody = response.errorBody()?.string()
                     errorMessage.postValue("Error ${response.code()}: $errorBody")
                 }
